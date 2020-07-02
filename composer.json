@@ -1,0 +1,11 @@
+{
+    "name": "creativetech/newpluginak",
+    "description": "New Plugin Example",
+    "type": "project",
+    "license": "GPL",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {"Inc\\": "./inc"}
+    }
+}
