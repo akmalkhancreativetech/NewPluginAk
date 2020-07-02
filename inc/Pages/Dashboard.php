@@ -11,14 +11,14 @@ use Inc\Base\BaseController;
 use Inc\Api\Callbacks\AdminCallbacks;
 use Inc\Api\Callbacks\ManagerCallbacks;
 
-class Admin extends BaseController
+class Dashboard extends BaseController
  {
 
     public $settings;
     public $callbacks;
     public $callbacks_mngr;
     public $pages = array();
-    public $subpages = array();
+    // public $subpages = array();
 
     public function register()
     {
@@ -26,12 +26,12 @@ class Admin extends BaseController
       $this->callbacks = new AdminCallbacks();
       $this->callbacks_mngr = new ManagerCallbacks();
       $this->setPages();
-      $this->setSubpages();
+      // $this->setSubpages();
       $this->setSettings();
       $this->setSections();
       $this->setFields();
 
-      $this->settings->addPages($this->pages)->withSubpage('Dashboard')->addSubpages($this->subpages)->register();
+      $this->settings->addPages($this->pages)->withSubpage('Dashboard')->register();
     }
 
     public function setPages()
@@ -49,35 +49,35 @@ class Admin extends BaseController
       );
     }
 
-    public function setSubpages()
-    {
-      $this->subpages = array(
-        array(
-          'parent_slug' => 'new_plugin_ak', 
-          'page_title' => 'Custom Post Types', 
-          'menu_title' => 'CPT', 
-          'capability' => 'manage_options', 
-          'menu_slug' => 'new_plugin_ak_cpt', 
-          'callback' => array($this->callbacks, 'adminCpt')
-        ),
-        array(
-          'parent_slug' => 'new_plugin_ak', 
-          'page_title' => 'Custom Taxonomies', 
-          'menu_title' => 'Taxonomies', 
-          'capability' => 'manage_options', 
-          'menu_slug' => 'new_plugin_ak_taxonomies', 
-          'callback' => array($this->callbacks, 'adminTaxonomies')
-        ),
-        array(
-          'parent_slug' => 'new_plugin_ak', 
-          'page_title' => 'Custom Widgets', 
-          'menu_title' => 'Widgets', 
-          'capability' => 'manage_options', 
-          'menu_slug' => 'new_plugin_ak_widgets', 
-          'callback' => array($this->callbacks, 'adminWidgets')
-        )
-      );
-    }
+    // public function setSubpages()
+    // {
+    //   $this->subpages = array(
+    //     array(
+    //       'parent_slug' => 'new_plugin_ak', 
+    //       'page_title' => 'Custom Post Types', 
+    //       'menu_title' => 'CPT', 
+    //       'capability' => 'manage_options', 
+    //       'menu_slug' => 'new_plugin_ak_cpt', 
+    //       'callback' => array($this->callbacks, 'adminCpt')
+    //     ),
+    //     array(
+    //       'parent_slug' => 'new_plugin_ak', 
+    //       'page_title' => 'Custom Taxonomies', 
+    //       'menu_title' => 'Taxonomies', 
+    //       'capability' => 'manage_options', 
+    //       'menu_slug' => 'new_plugin_ak_taxonomies', 
+    //       'callback' => array($this->callbacks, 'adminTaxonomies')
+    //     ),
+    //     array(
+    //       'parent_slug' => 'new_plugin_ak', 
+    //       'page_title' => 'Custom Widgets', 
+    //       'menu_title' => 'Widgets', 
+    //       'capability' => 'manage_options', 
+    //       'menu_slug' => 'new_plugin_ak_widgets', 
+    //       'callback' => array($this->callbacks, 'adminWidgets')
+    //     )
+    //   );
+    // }
 
   public function setSettings()
 	{
@@ -88,14 +88,6 @@ class Admin extends BaseController
             'callback' => array( $this->callbacks_mngr, 'checkboxSanitize' )
           )
     );
-      // foreach($this->mangers as $key => $value)
-      // {
-      //   $args[] = array(
-      //     'option_group' => 'new_plugin_ak_settings',
-      //     'option_name' => $key,
-      //     'callback' => array( $this->callbacks_mngr, 'checkboxSanitize' )
-      //   );
-      // }
 		$this->settings->setSettings( $args );
   }
   
@@ -125,6 +117,7 @@ class Admin extends BaseController
           'page' => 'new_plugin_ak',
           'section' => 'new_plugin_ak_index',
           'args' => array(
+              'option_name' => 'new_plugin_ak',
               'label_for' => $key,
               'class' => 'ui-toggle'
           )
