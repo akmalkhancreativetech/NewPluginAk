@@ -1,10 +1,5 @@
 <?php
-/**
- * @package NewPluginAk
- */
-/*
-Plugin Name: NewPluginAk
-*/
+
 
 if(!defined('WP_UNISTALL_PLUGIN')){
     exit();
