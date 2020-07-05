@@ -18,6 +18,7 @@ use Inc\Api\Callbacks\AdminCallbacks;
 
     public function register()
     {
+        if (! $this->activated('cpt_manager')) return;
         $this->settings = new SettingsApi();
         $this->callbacks = new AdminCallbacks();
         $this->setSubpages();
@@ -25,7 +26,7 @@ use Inc\Api\Callbacks\AdminCallbacks;
         add_action('init', array($this, 'activate'));
     }
 
-    public function setSubpages()
+    public function setSubpages() 
     {
       $this->subpages = array(
         array(

@@ -12,7 +12,7 @@
      public $plugin;
      public $mangers = array();
 
-     function __construct()
+    public function __construct()
      {
          $this->plugin_path = plugin_dir_path(dirname(__FILE__, 2));
          $this->plugin_url = plugin_dir_url(dirname(__FILE__, 2));
@@ -29,5 +29,11 @@
              'membership_manager' => 'Activate Membership Manager',
              'chat_manager' => 'Activate Chat Manager'
          );
+     }
+     
+     public function activated(string $key)
+     {
+         $option = get_option('new_plugin_ak');
+         return isset($option[$key]) ? $option[$key] : false;
      }
  }
