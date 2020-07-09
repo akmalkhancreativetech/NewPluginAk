@@ -4,8 +4,8 @@
 
     <form action="options.php" method="post">
         <?php
-            settings_fields('new_plugin_ak_cpt_settings');
-            do_settings_sections('new_plugin_ak_cpt');
+            settings_fields('new_plugin_cpt_settings');
+            do_settings_sections('new_plugin_cpt');
             submit_button();
         ?>
     </form>
