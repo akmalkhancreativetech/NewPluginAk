@@ -15,7 +15,11 @@ class CptCallbacks
 
      public function cptSanitize($input)
      {
-         return $input;
+         $output = get_option('new_plugin_cpt');
+         $new_input = array($input['post_type'] => $input);
+         print_r($input);
+         die();
+        //  return $input;
      }
 
      public function textField($args)
@@ -23,7 +27,7 @@ class CptCallbacks
         $name = $args['label_for'];
         $option_name = $args['option_name'];
         $input = get_option($option_name);
-        echo '<input type="text" class="regular-text" id="' . $name . '" name="' . $option_name . '[test][' . $name . ']" value="" placeholder="' . $args['placeholder'] .'" >';
+        echo '<input type="text" class="regular-text" id="' . $name . '" name="' . $option_name . '[' . $name . ']" value="" placeholder="' . $args['placeholder'] .'" >';
      }
 
      public function checkboxField($args)
@@ -32,7 +36,7 @@ class CptCallbacks
          $classes = $args['class'];
          $option_name = $args['option_name'];
          $checkbox = get_option($option_name);
-         echo '<div class="' .$classes . '"><input type="checkbox" id="' . $name . '" name="' . $option_name . '[test][' . $name . ']" value="1" class="' . $classes .'">
+         echo '<div class="' .$classes . '"><input type="checkbox" id="' . $name . '" name="' . $option_name . '[' . $name . ']" value="1" class="' . $classes .'">
          <label for="' . $name . '"><div></div></label></div>';
      }
  }
